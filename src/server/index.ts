@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/data', async (req, res) => {
-  const datas = await find(Data, {});
+  const datas = await find(Data, { order: { dataId: 'DESC' } });
   res.send(datas);
 });
 
