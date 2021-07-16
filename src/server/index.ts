@@ -1,6 +1,6 @@
 import express from 'express';
 import { Data } from './entity/Data';
-import { find } from './utility';
+import { find, save } from './utility';
 
 const app = express();
 
@@ -12,18 +12,22 @@ app.get('/', (req, res) => {
   res.sendFile(`${PUBLIC_ROOT}/index.html`);
 });
 
-app.get('/api/test', (req, res) => {
-  const testData = {
-    name: 'てすとマン',
-    age: 40,
-    profile: 'もう生き遅れてしまった中年男性。しかし家庭を持つ夢は諦めていない',
-  };
-  res.send(testData);
-});
-
 app.get('/api/data', async (req, res) => {
   const datas = await find(Data, {});
   res.send(datas);
+});
+
+type PostData = {
+  userNameText: string;
+  scoreText: string;
+};
+
+app.get<PostData>('/api/post/data', async (req, res) => {
+  const { userNameText, scoreText } = req.query;
+  const userName = userNameText as string;
+  const score = parseInt(scoreText as string, 10);
+  await save(Data, { userName, score });
+  res.send({ isOk: true });
 });
 
 app.listen(8080, () => {
