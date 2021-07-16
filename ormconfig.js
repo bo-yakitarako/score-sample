@@ -15,7 +15,7 @@ module.exports = [
     logging: false,
     connectTimeout: 30 * 1000,
     acquireTimeout: 30 * 1000,
-    entities: [__dirname + '/dist/server/entity/**/*.js', __dirname + '/src/server/entity/**/*.ts'],
+    entities: [__dirname + '/dist/server/entity/**/*.js'],
     migrations: [__dirname + '/dist/server/migration/**/*.js'],
     cli: {
       entitiesDir: 'src/server/entity',
