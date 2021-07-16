@@ -47,7 +47,7 @@ const Form: React.FC = () => {
   );
 
   return (
-    <div>
+    <>
       <TextFieldWrapper>
         <TextFieldLayout
           color="primary"
@@ -78,7 +78,7 @@ const Form: React.FC = () => {
           送信〜
         </StyledButton>
       </ButtonWrapper>
-    </div>
+    </>
   );
 };
 
