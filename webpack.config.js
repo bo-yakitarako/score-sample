@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
 
 module.exports = {
   mode: 'development',
@@ -15,6 +17,11 @@ module.exports = {
     modules: [path.resolve(__dirname, 'src', 'client'), path.resolve(__dirname, 'node_modules')],
     extensions: ['.ts', '.tsx', '.js']
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.config().parsed) // it will automatically pick up key values from .env file
+    }),
+  ],
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
     publicPath: '/js/',

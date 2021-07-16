@@ -1,26 +1,48 @@
-import React, { useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useSelector } from '../hooks/useSelector';
-import { app } from '../modules/app';
+import styled from 'styled-components';
+import { StylesProvider, Typography } from '@material-ui/core';
+import { dataAction } from '../actions/dataAction';
+import { DataTable } from './DataTable';
+import { Form } from './Form';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
-  const count = useSelector(({ count }) => count);
 
-  const handleCount = useCallback(
-    (changeAmount: number) => () => {
-      dispatch(app.actions.change(changeAmount));
-    },
-    [],
-  );
+  useEffect(() => {
+    dispatch(dataAction());
+  }, []);
 
   return (
-    <>
-      <button onClick={handleCount(-1)}>まいなす1</button>
-      <span>{count}</span>
-      <button onClick={handleCount(1)}>ぷらす1</button>
-    </>
+    <StylesProvider injectFirst>
+      <Wrapper>
+        <TitleWrapper>
+          <Title>スコア記入してぇ〜見るやつぅ〜</Title>
+        </TitleWrapper>
+        <Form />
+        <TitleWrapper>
+          <Title>いままでのきろく〜</Title>
+        </TitleWrapper>
+        <DataTable />
+      </Wrapper>
+    </StylesProvider>
   );
 };
 
 export { App };
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+const TitleWrapper = styled.div`
+  padding: 20px;
+`;
+
+const Title = styled(Typography)`
+  font-size: 24px;
+  font-weight: 500;
+`;
