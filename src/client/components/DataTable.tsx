@@ -31,7 +31,7 @@ const DataTable: React.FC = () => {
               <TableRow key={`${userName}-${createdAt}`}>
                 <TableCell>{userName}</TableCell>
                 <TableCell>{score}</TableCell>
-                <TableCell>{dayjs(createdAt).format('YYYY/MM/DD')}</TableCell>
+                <TableCell>{dayjs(createdAt).format('M/DD H:mm')}</TableCell>
               </TableRow>
             ))}
           </TableBody>
