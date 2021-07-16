@@ -1,4 +1,6 @@
 import express from 'express';
+import { Data } from './entity/Data';
+import { find } from './utility';
 
 const app = express();
 
@@ -17,6 +19,11 @@ app.get('/api/test', (req, res) => {
     profile: 'もう生き遅れてしまった中年男性。しかし家庭を持つ夢は諦めていない',
   };
   res.send(testData);
+});
+
+app.get('/api/data', async (req, res) => {
+  const datas = await find(Data, {});
+  res.send(datas);
 });
 
 app.listen(8080, () => {

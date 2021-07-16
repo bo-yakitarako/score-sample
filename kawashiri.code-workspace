@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../skull-king-display"
 		}
 	],
 	"settings": {
