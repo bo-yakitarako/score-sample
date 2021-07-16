@@ -10,7 +10,7 @@ module.exports = [
     port: 5432,
     username: process.env.PG_USERNAME,
     password: process.env.PG_PASSWORD,
-    database: 'kawashiri',
+    database: 'score_sample',
     synchronize: false,
     logging: false,
     connectTimeout: 30 * 1000,
